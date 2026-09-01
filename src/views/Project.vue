@@ -14,6 +14,49 @@
                 <a v-if="project.demoUrl" :href="project.demoUrl" class="link">Démo</a>
             </div>
         </div>
+        <section class="description">
+            <p v-if="project.description" class="lead">{{ project.description }}</p>
+
+            <div class="description-columns">
+                <dl class="facts" v-if="project.projectType || project.role || project.team || project.periodLabel || project.timeSpent">
+                    <div class="fact" v-if="project.projectType">
+                        <dt>Type de projet</dt>
+                        <dd>{{ project.projectType }}</dd>
+                    </div>
+                    <div class="fact" v-if="project.role">
+                        <dt>Rôle</dt>
+                        <dd>{{ project.role }}</dd>
+                    </div>
+                    <div class="fact" v-if="project.team">
+                        <dt>Équipe</dt>
+                        <dd>{{ project.team }}</dd>
+                    </div>
+                    <div class="fact" v-if="project.periodLabel">
+                        <dt>Période</dt>
+                        <dd>{{ project.periodLabel }}</dd>
+                    </div>
+                    <div class="fact" v-if="project.timeSpent">
+                        <dt>Temps passé</dt>
+                        <dd>{{ project.timeSpent }}</dd>
+                    </div>
+                </dl>
+
+                <div class="extras" v-if="project.anecdote || project.funFact || project.bilan">
+                    <div class="extra" v-if="project.anecdote">
+                        <dt>Anecdote</dt>
+                        <dd>{{ project.anecdote }}</dd>
+                    </div>
+                    <div class="extra" v-if="project.funFact">
+                        <dt>Fun fact</dt>
+                        <dd>{{ project.funFact }}</dd>
+                    </div>
+                    <div class="extra" v-if="project.bilan">
+                        <dt>Bilan</dt>
+                        <dd>{{ project.bilan }}</dd>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section v-if="project.screenshots && project.screenshots.length > 0">
             <ScreeshotCarousel :screenshots="project.screenshots"></ScreeshotCarousel>
         </section>
@@ -36,6 +79,11 @@
         <section class="architecture" v-if="project.architecture">
             <h2>Architecture</h2>
             <div class="section-text" v-html="renderMd(project.architecture)"></div>
+        </section>
+        <section class="codeSnippet" v-if="project.codeSnippet">
+            <h2>Extrait de code</h2>
+            <div class="section-text" v-if="project.codeSnippetIntro" v-html="renderMd(project.codeSnippetIntro)"></div>
+            <pre class="code-block"><code>{{ project.codeSnippet }}</code></pre>
         </section>
         <section class="prochainesEvolutions" v-if="project.prochainesEvolutions">
             <h2>Prochaines évolutions</h2>
@@ -133,6 +181,100 @@ section {
     gap: 0.75rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.description-columns {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.extras {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.extra {
+    padding: 0.75rem 1rem;
+    border-left: 2px solid var(--font-sub);
+    background: color-mix(in srgb, var(--border) 40%, transparent);
+    border-radius: 0 6px 6px 0;
+}
+
+.extra dt {
+    color: var(--font-sub);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.3rem 0;
+}
+
+.extra dd {
+    color: var(--font-sub2);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+}
+
+.fact {
+    display: flex;
+    flex-direction: column;
+}
+
+.facts dt {
+    color: var(--font-sub);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.25rem 0;
+}
+
+.facts dd {
+    color: var(--font-main);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.lead {
+    color: var(--font-sub2);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.code-block {
+    margin: 0;
+    padding: 1.25rem;
+    background: color-mix(in srgb, var(--border) 30%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.code-block code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--font-main2);
+    white-space: pre;
 }
 
 section h2 {

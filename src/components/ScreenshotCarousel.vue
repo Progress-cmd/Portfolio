@@ -192,7 +192,7 @@ function closeLightbox() { lightboxOpen.value = false }
 .lightbox-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(7, 13, 27, 0.9);
+    background: color-mix(in srgb, var(--background) 90%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
