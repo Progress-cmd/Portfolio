@@ -35,6 +35,16 @@ export const projects = [
 
         prochainesEvolutions: "Unison est un projet vivant, pensé pour évoluer par étapes. La priorité actuelle est de terminer la **migration complète** de l'ancienne bibliothèque musicale. Ensuite, deux axes sont prévus :\n\n1. Étendre l'**import et la recherche** au-delà du contenu déjà présent localement, pour ne plus être limité aux morceaux déjà téléchargés.\n2. Introduire une couche plus **intelligente de recommandation** : s'appuyer sur des API externes de suggestion musicale pour proposer des titres similaires, et explorer à terme une petite **IA interne** capable d'apprendre les goûts de chaque utilisateur pour affiner ses propositions.\n\nL'objectif plus large est de générer des **playlists à thème**, suggérer de nouveaux sons depuis des sources externes, et remettre en avant les morceaux les moins écoutés de la bibliothèque.",
 
+        // --- Petits plus ---
+        funFact: "L'application salue par le prénom selon l'heure — « Bonjour, Francis », « Bonsoir, Francis », ou « Bonne nuit, Francis » passé une certaine heure.",
+        bilan: "À ce jour, la bibliothèque compte 344 titres, en version 1.0.10 — mais pas encore une seule écoute au compteur : la migration de l'ancienne plateforme n'est pas terminée, et la vraie utilisation quotidienne n'a pas encore commencé. Une fois les quelque 2000 titres migrés, Unison prendra vraiment sa place.",
+        transparence: "La première version d'Unison — fonctionnelle et déjà en production, architecture, streaming, authentification compris — est entièrement de ma main. C'est une fois cette v1 stable que l'IA agentique a pris une place plus importante pour accélérer les nouvelles fonctionnalités et l'affichage, avec beaucoup moins d'intervention manuelle de ma part sur cette partie plus récente.",
+
+        // --- Extrait de code ---
+        codeSnippetIntro: "La lecture d'un morceau ne se contente pas de servir un fichier en entier : le navigateur demande des *plages d'octets* précises (`Range Requests`), notamment pour permettre de déplacer le curseur de lecture sans retélécharger tout le fichier depuis le début.",
+        codeSnippetLang: "php",
+        codeSnippet: "if (isset($_SERVER['HTTP_RANGE'])) {\n    /*\n     * Les bornes reçues sont bornées au fichier. Sans ça, une demande au-delà\n     * de la fin produisait un Content-Length supérieur à ce qui était réellement\n     * envoyé : le navigateur attendait indéfiniment des octets qui ne venaient\n     * pas. C'est exactement ce que fait Android quand on déplace le curseur\n     * près de la fin d'un morceau.\n     */\n    if (preg_match('/bytes=(\\d*)-(\\d*)/', $_SERVER['HTTP_RANGE'], $matches)) {\n        $debutDemande = $matches[1];\n        $finDemandee  = $matches[2];\n\n        if ($debutDemande === '' && $finDemandee !== '') {\n            // Forme suffixe « bytes=-500 » : les N derniers octets.\n            $longueur = min((int) $finDemandee, $size);\n            $start = $size - $longueur;\n            $end   = $size - 1;\n        } else {\n            $start = (int) $debutDemande;\n            $end   = $finDemandee !== '' ? (int) $finDemandee : $size - 1;\n        }\n\n        $end = min($end, $size - 1);\n\n        // Intervalle inexploitable : la norme impose 416 et la taille réelle,\n        // ce qui permet au lecteur de repartir sur de bonnes bases.\n        if ($start < 0 || $start > $end) {\n            header('HTTP/1.1 416 Range Not Satisfiable');\n            header(\"Content-Range: bytes */$size\");\n            exit;\n        }\n\n        header('HTTP/1.1 206 Partial Content');\n        header(\"Content-Range: bytes $start-$end/$size\");\n    }\n}",
+
         // --- Captures ---
         screenshots: ["/img/unison/1.png", "/img/unison/2.png", "/img/unison/3.png", "/img/unison/4.png", "/img/unison/5.png", "/img/unison/6.png"]
     },
@@ -48,7 +58,7 @@ export const projects = [
         // --- Stack ---
         languages: ["C++", "GLSL"],
         tools: ["OpenGL", "Glad", "GLFW", "glm", "Freetype", "stb"],
-        tags: ["C++", "GLSL"],
+        tags: ["C++", "GLSL", "GLFW"],
 
         // --- Liens ---
         sourceUrl: "https://github.com/Progress-cmd/Minecraft-5.1.git",
@@ -125,7 +135,7 @@ export const projects = [
         // --- Infos factuelles ---
         projectType: null,
         role: null,
-        team: null,
+        team: 1,
         periodLabel: null,
         timeSpent: null
     },
@@ -148,7 +158,7 @@ export const projects = [
         // --- Infos factuelles ---
         projectType: null,
         role: null,
-        team: null,
+        team: 1,
         periodLabel: null,
         timeSpent: null
     },
@@ -171,7 +181,7 @@ export const projects = [
         // --- Infos factuelles ---
         projectType: null,
         role: null,
-        team: null,
+        team: 2,
         periodLabel: null,
         timeSpent: null
     }

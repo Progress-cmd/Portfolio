@@ -41,7 +41,7 @@
                     </div>
                 </dl>
 
-                <div class="extras" v-if="project.anecdote || project.funFact || project.bilan">
+                <div class="extras" v-if="project.anecdote || project.funFact || project.bilan || project.transparence">
                     <div class="extra" v-if="project.anecdote">
                         <dt>Anecdote</dt>
                         <dd>{{ project.anecdote }}</dd>
@@ -53,6 +53,10 @@
                     <div class="extra" v-if="project.bilan">
                         <dt>Bilan</dt>
                         <dd>{{ project.bilan }}</dd>
+                    </div>
+                    <div class="extra" v-if="project.transparence">
+                        <dt>Transparence</dt>
+                        <dd>{{ project.transparence }}</dd>
                     </div>
                 </div>
             </div>
