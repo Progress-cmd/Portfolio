@@ -52,7 +52,7 @@ export const projects = [
         // --- Identité ---
         name: "Minecraft",
         slug: "minecraft",
-        description: "Création de zéro une copie conforme du jeu Minecraft. Apprentissage du langage C++, compréhension et création d'un moteur de jeu 3D et utilisation des méthodes de générations tel que le bruit de Perlin.",
+        description: "Création de zéro d'une copie conforme du jeu Minecraft. Apprentissage du langage C++, compréhension et création d'un moteur de jeu 3D et utilisation des méthodes de générations tel que le bruit de Perlin.",
         state: "Archivé",
 
         // --- Stack ---
@@ -92,6 +92,49 @@ export const projects = [
 
         // --- Captures ---
         screenshots: ["/img/minecraft/1.png", "/img/minecraft/2.png", "/img/minecraft/3.png", "/img/minecraft/4.png", "/img/minecraft/5.png", "/img/minecraft/6.png"]
+    },
+    {
+        // --- Identité ---
+        name: "Orisio",
+        slug: "orisio",
+        description: "Portail de consultation de stock en temps réel chez des logisticiens",
+        state: "Bêtatestage",
+
+        // --- Stack ---
+        languages: ["PHP", "SQL", "YAML"],
+        tools: ["Symfony", "Docker", "Apache", "PostgreSQL", "n8n"],
+        tags: ["Docker", "Symfony", "PostgreSQL", "n8n"],
+
+        // --- Liens ---
+        sourceUrl: null,
+        demoUrl: null,
+
+        // --- Infos factuelles ---
+        projectType: "Projet professionnel",
+        role: "Création, mise en place, maintenance et réponse aux demandes clients",
+        team: "1",
+        periodLabel: "Avril 2026 → en cours",
+        timeSpent: "125 heures",
+
+        // --- Contenu éditorial ---
+        contexte: "Ce projet est né d'une opportunité plutôt que d'une demande formulée dès le départ : explorer cette piste représentait un investissement de temps trop incertain pour être entrepris sans une personne disponible pour s'y consacrer. Ce besoin restait informel, jamais vraiment posé comme un projet à part entière avant que je n'arrive en stage. C'est dans ce cadre — un stage de huit semaines — que j'ai eu l'occasion de m'y investir pleinement.\n\nLe constat de départ est simple : un logisticien qui gère le stock d'un client, et un client qui souhaite en suivre l'évolution. Leurs outils respectifs — le **WMS** du logisticien et l'**ERP** du client — communiquent déjà entre eux, mais **pas en temps réel**. Résultat, le client n'a qu'une visibilité partielle et différée sur ce qui se passe réellement dans l'entrepôt. Orisio comble cet écart : un portail qui centralise et affiche l'état du stock du logisticien, consultable par ses clients à tout moment.\n\nMon rôle a couvert l'ensemble du cycle de vie du projet, de sa conception initiale à sa maintenance actuelle, en passant par l'ajout continu de nouvelles fonctionnalités.",
+
+        ceQueJaiConstruit: "Orisio est un **portail web** qui donne aux clients d'un logisticien une **vue en temps réel** sur le stock que celui-ci détient pour leur compte. J'en ai assuré la **conception**, la **mise en place**, la **maintenance** et l'**évolution** : la responsabilité complète du cycle de vie.\n\nLe portail couvre toute la chaîne logistique vue côté client :\n\n- Consultation des **attendus** et des **réceptions**\n- Suivi des **missions** et des **expéditions**\n- Inventaire des **marchandises en stock** et **état global** à un instant donné\n- **Historique** des mouvements de stock\n\nL'application est **multi-logisticiens** et **multi-clients**, avec un **cloisonnement strict** des données d'un client à l'autre.\n\nS'y ajoutent trois outils d'exploitation : une **interface d'administration** (utilisateurs, organisations, espaces de travail), une **interface de consultation des logs**, et un **terminal SQL** permettant d'interroger directement la base de données.\n\nLes données transitent par un **serveur SFTP** organisé en deux arborescences distinctes, *production* et *test*. Le traitement de ces flux et la synchronisation des stocks reposent sur une **orchestration n8n** : un workflow maître déclenche **huit sous-workflows** spécialisés, complétés par un **workflow nocturne** qui réaligne l'état des stocks chaque nuit.",
+
+        choixTechniques: "Le besoin initial était clair : le WMS du logisticien et l'ERP du client échangent déjà des données, mais **pas en temps réel**. Orisio comble ce déficit de visibilité immédiate **sans se substituer** aux systèmes existants.\n\nLe choix de la stack a été formalisé par une **analyse SWOT** de chaque brique candidate. En sont ressortis **Docker** pour l'isolation et la reproductibilité des environnements, **PostgreSQL** comme base de données, **Symfony** pour le back-end, **HTML5** et **Bootstrap** pour l'interface, et **n8n** pour l'automatisation des flux.\n\nLa modélisation de la base a été posée en amont sous forme de **schéma UML**, puis matérialisée via l'ORM **Doctrine**. Le code Symfony suit une **organisation par responsabilité** : contrôleurs, formulaires, entités, repositories, écouteurs d'événements, sécurité et services.\n\nL'authentification repose sur des **mots de passe hachés**. Une **authentification unique (SSO)** a été envisagée puis écartée : le gain ne justifiait pas la complexité d'intégration au regard du périmètre et du temps disponible.",
+
+        architecture: "L'application est déployée sur un **serveur Linux**, chaque composant dans son propre **conteneur Docker** : la base **PostgreSQL**, l'application **Symfony** et l'instance **n8n**.\n\nUn **serveur web Apache** est placé devant ces conteneurs. Il reçoit les requêtes venant de l'extérieur, assure le **chiffrement TLS** — certificats gérés et renouvelés automatiquement par **Certbot** — et transmet le trafic à l'application. L'exposition réseau est restreinte par un **pare-feu ufw** n'ouvrant que les ports nécessaires.\n\nLes échanges de fichiers passent par un **serveur SFTP dédié**, dont l'arborescence sépare les flux de *production* des flux de *test* pour permettre des essais sans risque sur les données réelles.\n\nL'automatisation **n8n** est hiérarchisée : un workflow **orchestrateur** central pilote **huit sous-workflows**, chacun dédié à un type de flux, et un **workflow programmé la nuit** resynchronise l'intégralité des stocks.",
+
+        ceQueJaiAppris: "Ce projet a couvert un **large spectre technique**, à des niveaux de maîtrise très variables : certains outils m'étaient **déjà familiers**, d'autres je les ai **approfondis**, plusieurs je les ai **découverts entièrement** — **Git** et **GitHub**, la modélisation **UML**, l'administration d'un système **Linux**, la conteneurisation avec **Docker**, l'automatisation via **n8n**, **PostgreSQL** et **Symfony**. Les rencontrer sur les **besoins réels** du projet, et non dans un cadre d'exercice, a changé la façon de les apprendre.\n\nJ'ai aussi fait évoluer mon **rapport à l'IA**. Réticent au départ, j'ai fini par en cerner l'**usage juste** : un appui pour la recherche, le débogage et le guidage, **jamais un substitut** à l'apprentissage lui-même. Avec le recul, j'aurais gagné à l'employer de manière plus mesurée et plus formatrice.\n\nSur le plan des **compétences transverses**, la conduite du projet **à distance** m'a obligé à structurer ma communication avec mon maître de stage et à gérer mon **autonomie** sur la durée.",
+
+        // --- Petits plus ---
+        anecdote: "L'application s'est un jour arrêtée, et il a fallu une quinzaine de jours pour s'en apercevoir. La cause n'était pas le code : n8n produit des logs volumineux qui avaient fini par saturer l'espace disque du serveur. Une fois le problème réglé, il a fallu réindexer quinze jours de fichiers quotidiens accumulés.",
+        bilan: "Orisio a rempli l'objectif de sa première phase : donner aux clients une visibilité en temps réel sur leur stock. Le portail est en production mais toujours en phase de test, sans accès ouvert aux logisticiens ni à leurs clients. Le stage s'est prolongé en mission freelance via mon entreprise individuelle, ce qui a permis d'en poursuivre la maintenance et les évolutions. Faute d'expérience au démarrage et de temps, le périmètre est resté celui de la consultation.",
+
+        prochainesEvolutions: "Le projet a été pensé en phases successives. La phase réalisée est celle de la consultation. La suivante ouvrirait le portail à l'interaction : agir sur les attendus et les ordres de préparation, et non plus seulement les consulter. À terme, Orisio deviendrait un OMS à part entière, positionné en intermédiaire de tous les échanges entre le WMS du logisticien et l'ERP du client, avec un rôle actif dans la circulation des ordres plutôt qu'un simple miroir de l'état des stocks.",
+
+        // --- Captures ---
+        screenshots: ["/img/orisio/1.png", "/img/orisio/2.png", "/img/orisio/3.png", "/img/orisio/4.png", "/img/orisio/5.png", "/img/orisio/6.png"]
     },
     {
         // --- Identité ---
