@@ -15,15 +15,19 @@
       </div>
     </div>
     <div class="body-body">
-      <ProjectCard v-for="(project, index) in projects" :key="index" :name="project.name" :description="project.description" :tags="project.tags" :state="project.state" :sourceUrl="project.sourceUrl" :demoUrl="project.demoUrl" :slug="project.slug"></ProjectCard>
+      <ProjectCard v-for="(project, index) in featuredProjects" :key="index" :name="project.name" :description="project.description" :tags="project.tags" :state="project.state" :sourceUrl="project.sourceUrl" :demoUrl="project.demoUrl" :slug="project.slug"></ProjectCard>
     </div>
+    <RouterLink to="/projects" class="all-projects-link">Voir tous les projets →</RouterLink>
   </div>
 </template>
 
 <script setup>
 import StatBlock from '@/components/StatBlock.vue'
 import ProjectCard from '@/components/ProjectCard.vue'
+import { RouterLink } from 'vue-router'
 import { projects } from '../data/projects.js'
+
+const featuredProjects = projects.slice(0, 3)
 
 const stats = [{ number: 9, label: 'projets livrés' }, { number: 4, label: 'usages réels' }, { number: 7, label: 'langages utilisés' }]
 </script>
@@ -78,6 +82,20 @@ const stats = [{ number: 9, label: 'projets livrés' }, { number: 4, label: 'usa
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
-  padding: 40px 0 60px 0;
+  padding: 40px 0 30px 0;
+}
+
+.all-projects-link {
+  display: inline-block;
+  margin-bottom: 60px;
+  color: var(--font-sub);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+}
+
+.all-projects-link:hover {
+  border-bottom-color: var(--font-sub);
 }
 </style>
