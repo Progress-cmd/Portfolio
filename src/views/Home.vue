@@ -29,7 +29,7 @@ import { projects } from '../data/projects.js'
 
 const featuredProjects = projects.slice(0, 3)
 
-const stats = [{ number: 9, label: 'projets livrés' }, { number: 4, label: 'usages réels' }, { number: 7, label: 'langages utilisés' }]
+const stats = [{ number: 7, label: 'projets livrés' }, { number: 3, label: 'usages réels' }, { number: 4, label: 'projets d\'apprentissages' }]
 </script>
 
 <style scoped>
