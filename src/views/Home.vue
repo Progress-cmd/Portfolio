@@ -98,4 +98,49 @@ const stats = [{ number: 7, label: 'projets livrés' }, { number: 3, label: 'usa
 .all-projects-link:hover {
   border-bottom-color: var(--font-sub);
 }
+
+@media (max-width: 1024px) {
+  #body {
+    padding: 60px 60px 0 60px;
+  }
+
+  .body-head {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .body-head-right {
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #body {
+    padding: 40px 24px 0 24px;
+  }
+
+  #title {
+    font-size: x-large;
+  }
+
+  .body-body {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 32px 0 24px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  #body {
+    padding: 32px 16px 0 16px;
+  }
+
+  .body-head-right {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
 </style>

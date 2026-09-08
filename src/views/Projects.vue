@@ -28,25 +28,25 @@
             :class="{ clickable: hasDetail(project) }"
             @click="hasDetail(project) && goTo(project.slug)"
           >
-            <td class="name-cell">
+            <td class="name-cell" data-label="Projet">
               <RouterLink v-if="hasDetail(project)" :to="'/projects/' + project.slug" @click.stop>
                 {{ project.name }}
               </RouterLink>
               <span v-else>{{ project.name }}</span>
             </td>
-            <td>{{ project.projectType || '—' }}</td>
-            <td>
+            <td data-label="Type">{{ project.projectType || '—' }}</td>
+            <td data-label="État">
               <span v-if="project.state" class="state">{{ project.state }}</span>
               <span v-else>—</span>
             </td>
-            <td class="tags-cell">
+            <td class="tags-cell" data-label="Technologies">
               <template v-if="project.tags && project.tags.length">
                 <span class="tag" v-for="(tag, i) in project.tags" :key="i">{{ tag }}</span>
               </template>
               <span v-else>—</span>
             </td>
-            <td>{{ project.periodLabel || '—' }}</td>
-            <td class="links-cell">
+            <td data-label="Période">{{ project.periodLabel || '—' }}</td>
+            <td class="links-cell" data-label="Liens">
               <a v-if="project.sourceUrl" :href="project.sourceUrl" @click.stop>Code</a>
               <a v-if="project.demoUrl" :href="project.demoUrl" @click.stop>Démo</a>
               <span v-if="!project.sourceUrl && !project.demoUrl">—</span>
@@ -186,9 +186,94 @@ const goTo = (slug) => router.push('/projects/' + slug)
   border-bottom-color: var(--font-sub);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   #body {
-    padding: 50px 24px 40px 24px;
+    padding: 60px 60px 60px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  #body {
+    padding: 40px 24px 40px 24px;
+  }
+
+  #title {
+    font-size: x-large;
+  }
+
+  .table-wrap {
+    overflow-x: visible;
+  }
+
+  .projects-table,
+  .projects-table tbody,
+  .projects-table tr,
+  .projects-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .projects-table thead {
+    display: none;
+  }
+
+  .projects-table tr {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .projects-table tr.clickable:hover td {
+    background-color: transparent;
+  }
+
+  .projects-table tr.clickable:active {
+    border-color: var(--font-sub);
+  }
+
+  .projects-table td {
+    padding: 0.35rem 0;
+    border-bottom: none;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .projects-table td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    width: 110px;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--font-main2);
+  }
+
+  .projects-table td.tags-cell,
+  .projects-table td.links-cell {
+    flex-wrap: wrap;
+  }
+
+  .name-cell {
+    white-space: normal;
+    font-size: 1rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #body {
+    padding: 32px 16px 32px 16px;
+  }
+
+  .projects-table td {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .projects-table td::before {
+    width: auto;
   }
 }
 </style>

@@ -227,4 +227,62 @@ function closeLightbox() { lightboxOpen.value = false }
     border-color: var(--font-sub);
     color: var(--font-sub);
 }
+
+@media (max-width: 768px) {
+    .stage {
+        height: 240px;
+        gap: 0.25rem;
+    }
+
+    .slide {
+        width: 100%;
+        max-width: 78%;
+    }
+
+    .slide.prev {
+        transform: translate(-95%, -50%) scale(0.8);
+        opacity: 0.35;
+    }
+
+    .slide.next {
+        transform: translate(-5%, -50%) scale(0.8);
+        opacity: 0.35;
+    }
+
+    .arrow {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .thumbnails {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .lightbox-overlay {
+        padding: 1.5rem;
+    }
+
+    .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stage {
+        height: 200px;
+    }
+
+    .slide {
+        max-width: 85%;
+    }
+
+    .slide.prev,
+    .slide.next {
+        opacity: 0.2;
+    }
+}
 </style>

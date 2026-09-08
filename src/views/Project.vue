@@ -339,4 +339,55 @@ section h2 {
 .section-text :deep(li)::marker {
     color: var(--font-sub);
 }
+
+@media (max-width: 1024px) {
+    .project {
+        padding: 60px 60px 80px 60px;
+        gap: 2.5rem;
+    }
+
+    .description-columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project {
+        padding: 40px 24px 60px 24px;
+        gap: 2rem;
+    }
+
+    h1 {
+        font-size: x-large;
+    }
+
+    .meta {
+        margin-top: -1rem;
+        gap: 0.75rem;
+    }
+
+    .links {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    section {
+        padding-top: 1.5rem;
+    }
+
+    .code-block {
+        padding: 1rem;
+    }
+
+    .code-block code {
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project {
+        padding: 32px 16px 48px 16px;
+    }
+}
 </style>

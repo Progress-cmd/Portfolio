@@ -30,7 +30,7 @@
   </header>
 
   <RouterView :isDark="isDark"/>
-  
+
 </template>
 
 <script setup>
@@ -94,6 +94,14 @@ html {
   background-color: var(--background);
   font-family: 'IBM Plex Mono',monospace;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
 </style>
 
 <style scoped>
@@ -101,6 +109,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   padding: 20px;
   border-bottom: solid 1px var(--border);
 }
@@ -113,6 +123,13 @@ header div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  min-width: 0;
+}
+
+.header-left > span {
+  white-space: nowrap;
 }
 
 .brand {
@@ -182,5 +199,33 @@ header b {
 #switch-mode #selected {
   background-color: var(--border);
   color: var(--font-sub);
+}
+
+#switch-mode {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 14px 16px;
+  }
+
+  header b {
+    font-size: large;
+  }
+
+  .header-left {
+    font-size: 0.85rem;
+  }
+
+  .header-left > span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumbs .crumb::before {
+    margin: 0 4px;
+  }
 }
 </style>
