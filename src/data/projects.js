@@ -37,7 +37,7 @@ export const projects = [
 
         // --- Petits plus ---
         funFact: "L'application salue par le prénom selon l'heure — « Bonjour, Francis », « Bonsoir, Francis », ou « Bonne nuit, Francis » passé une certaine heure.",
-        bilan: "À ce jour, la bibliothèque compte 344 titres, en version 1.0.10 — mais pas encore une seule écoute au compteur : la migration de l'ancienne plateforme n'est pas terminée, et la vraie utilisation quotidienne n'a pas encore commencé. Une fois les quelque 2000 titres migrés, Unison prendra vraiment sa place.",
+        bilan: "À ce jour, la bibliothèque compte 731 titres, en version 1.0.10 — mais pas encore une seule écoute au compteur : la migration de l'ancienne plateforme n'est pas terminée, et la vraie utilisation quotidienne n'a pas encore commencé. Une fois les quelque 2000 titres migrés, Unison prendra vraiment sa place.",
         transparence: "La première version d'Unison — fonctionnelle et déjà en production, architecture, streaming, authentification compris — est entièrement de ma main. C'est une fois cette v1 stable que l'IA agentique a pris une place plus importante pour accélérer les nouvelles fonctionnalités et l'affichage, avec beaucoup moins d'intervention manuelle de ma part sur cette partie plus récente.",
 
         // --- Extrait de code ---
@@ -141,7 +141,7 @@ export const projects = [
         name: "Portfolio",
         slug: "portfolio",
         description: "Mise en avant de mes principaux projets et de moi même. Apprentissage d'un nouveau framework",
-        state: "Archivé",
+        state: "Actif",
 
         // --- Stack ---
         languages: [],
@@ -149,22 +149,22 @@ export const projects = [
         tags: ["Vue.js"],
 
         // --- Liens ---
-        sourceUrl: null,
-        demoUrl: null,
+        sourceUrl: "https://github.com/Progress-cmd/Portfolio.git",
+        demoUrl: "https://portfolio.pi5.ovh/",
 
         // --- Infos factuelles ---
-        projectType: null,
-        role: null,
-        team: null,
-        periodLabel: null,
-        timeSpent: null
+        projectType: "Projet personnel",
+        role: "Création, mise en place et mise à jour",
+        team: "1",
+        periodLabel: "31 août → 8 septembre",
+        timeSpent: "15 heures"
     },
     {
         // --- Identité ---
         name: "Conway's Game of Life",
         slug: "gameoflife",
-        description: "",
-        state: "",
+        description: "Création d'une copie du jeu de la vie selon J. Conway. Une simulation mathématique \"Turing-complet\".",
+        state: "Archivé",
 
         // --- Stack ---
         languages: [],
@@ -176,7 +176,7 @@ export const projects = [
         demoUrl: null,
 
         // --- Infos factuelles ---
-        projectType: null,
+        projectType: "Projet personnel",
         role: null,
         team: 1,
         periodLabel: null,
@@ -199,7 +199,7 @@ export const projects = [
         demoUrl: null,
 
         // --- Infos factuelles ---
-        projectType: null,
+        projectType: "Projet personnel",
         role: null,
         team: 1,
         periodLabel: null,
@@ -218,11 +218,11 @@ export const projects = [
         tags: ["C++"],
 
         // --- Liens ---
-        sourceUrl: null,
+        sourceUrl: "https://github.com/Progress-cmd/Pacman.git",
         demoUrl: null,
 
         // --- Infos factuelles ---
-        projectType: null,
+        projectType: "Projet scolaire",
         role: null,
         team: 2,
         periodLabel: null,
