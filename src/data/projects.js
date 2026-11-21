@@ -222,5 +222,28 @@ export const projects = [
         team: 2,
         periodLabel: null,
         timeSpent: null
+    },
+        {
+        // --- Identité ---
+        name: "Arcade",
+        slug: "arcade",
+        description: "",
+        state: "Actif",
+
+        // --- Stack ---
+        languages: [],
+        tools: [],
+        tags: ["Vibe Codé"],
+
+        // --- Liens ---
+        sourceUrl: "https://github.com/Progress-cmd/Arcade.git",
+        demoUrl: null,
+
+        // --- Infos factuelles ---
+        projectType: "Projet personel",
+        role: null,
+        team: 1,
+        periodLabel: null,
+        timeSpent: null
     }
 ]
